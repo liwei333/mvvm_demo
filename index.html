@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red {
+            color: red;
+        }
+
+        .blue {
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="test">
+        你好,{{content}},{{description}}<br />
+        <span>{{description}}</span>
+
+        <input type="text" v-model="obj.x" v-on:keydown="enter"/>{{obj.x}}
+        <ul>
+            <li v-for="(key) in list">
+                姓名：{{key.a}},年龄：{{key.b}}
+            </li>
+
+        </ul>
+        <img v-bind:src="imgSrc">
+        <!-- <div v-bind:class="{ads}"></div> -->
+        <br />
+        <span v-bind:class="haha">我的天啊</span>
+        <br />
+        <span v-bind:class="{red:obj.x > 2,blue: obj.x < 2}">我的地啊</span>
+    </div>
+    <script type="module">
+        import Due from './core/index.js';
+        
+        window.test = new Due({
+            el:"test",
+            data:{
+                content:"panda",
+                description:"panda say hello",
+                obj:{
+                    x:1,
+                    y:2
+                },
+                list :[{a:"panda",b:18},{a:"monkey",b:20}],
+                imgSrc:"./src/pic1.png",
+                haha:"red"
+            },
+            methods:{
+                enter:function(){
+                    console.log("hello",this);
+                }
+            },
+            created:function (){
+                console.log("创建完了");
+            }
+        });
+    </script>
+</body>
+
+</html>
